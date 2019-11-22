@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
+import { Redirect, Route, Switch } from 'react-router-dom'
 import { Layout, message } from 'antd'
 
 import Header from '../../components/header'
 import LeftNav from '../../components/left-nav'
 
 import memoryUtils from '../../utils/memoryUtils'
+
+import Home from '../../pages/home/'
+import Category from '../../pages/category/'
 
 const { Footer, Sider, Content } = Layout
 
@@ -23,7 +26,13 @@ export default class Admin extends Component{
                 </Sider>
                 <Layout>
                     <Header>Header</Header>
-                    <Content style={{ backgroundColor: '#fff' }}>Content</Content>
+                    <Content style={{ backgroundColor: '#ffe' }}>
+                        <Switch>
+                            <Redirect from='/' exact to='/home'/>
+                            <Route path='/home' component={Home}/>
+                            <Route path='/category' component={Category}/>
+                        </Switch>
+                    </Content>
                     <Footer style={{ textAlign: 'center' }}>are you sb</Footer>
                 </Layout>
             </Layout>
