@@ -1,7 +1,14 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom'
-import { message } from 'antd'
+import { Redirect } from 'react-router-dom'
+import { Layout, message } from 'antd'
+
+import Header from '../../components/header'
+import LeftNav from '../../components/left-nav'
+
 import memoryUtils from '../../utils/memoryUtils'
+
+const { Footer, Sider, Content } = Layout
+
 export default class Admin extends Component{
     render(){
         const user = memoryUtils.user
@@ -10,11 +17,16 @@ export default class Admin extends Component{
             return <Redirect to='/login'></Redirect>
         }
         return(
-            <div>
-                {
-                    'admin'
-                }
-            </div>
+            <Layout style={{ height: '100%' }}>
+                <Sider>
+                    <LeftNav></LeftNav>
+                </Sider>
+                <Layout>
+                    <Header>Header</Header>
+                    <Content style={{ backgroundColor: '#fff' }}>Content</Content>
+                    <Footer style={{ textAlign: 'center' }}>are you sb</Footer>
+                </Layout>
+            </Layout>
         )
     }
 }
