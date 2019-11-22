@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom'
+
 import {
     Form,
     Icon,
@@ -7,7 +9,12 @@ import {
     message
 } from 'antd'
 
+
 import logo from '../../assets/images/arr.png'
+import { reqLogin } from '../../api'
+import memoryUtils from '../../utils/memoryUtils'
+import storageUtils from '../../utils/storageUtils'
+
 
 import './login.less'
 
@@ -17,9 +24,18 @@ class Login extends Component{
     
     handleSubmit = (event)=>{
         event.preventDefault()
-        this.props.form.validateFields((err, values)=>{
+        this.props.form.validateFields(async (err, values)=>{
             if(!err){
-                console.log(values)
+                const result = await reqLogin(values.username, values.password)
+                if(result.status === 0){
+                    message.success('登陆成功')
+                    const user = result.data
+                    memoryUtils.user = user
+                    storageUtils.saveUser(user)
+                    this.props.history.replace('/')
+                }else {
+                    message.error(result.msg)
+                }
             }
         })
     }
@@ -38,6 +54,11 @@ class Login extends Component{
     }
 
     render(){
+        const user = memoryUtils.user
+        if(user && user._id){
+            message.error('已经登录')
+            return <Redirect to='/'></Redirect>
+        }
         const form = this.props.form
         const { getFieldDecorator } = form
 
@@ -76,7 +97,7 @@ class Login extends Component{
                                             validator: this.validatorPwd
                                         } 
                                     ],
-                                    initialValue: '123456'
+                                    initialValue: 'admin'
                                 })(
                                     <Input
                                         prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
