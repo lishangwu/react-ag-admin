@@ -7,8 +7,9 @@ import LeftNav from '../../components/left-nav'
 
 import memoryUtils from '../../utils/memoryUtils'
 
-import Home from '../../pages/home/'
-import Category from '../../pages/category/'
+import Home from '../home/'
+import Category from '../category/'
+import Product from '../product/product'
 
 const { Footer, Sider, Content } = Layout
 
@@ -31,6 +32,8 @@ export default class Admin extends Component{
                             <Redirect from='/' exact to='/home'/>
                             <Route path='/home' component={Home}/>
                             <Route path='/category' component={Category}/>
+                            <Route path='/product' component={Product}/>
+
                         </Switch>
                     </Content>
                     <Footer style={{ textAlign: 'center' }}>are you sb</Footer>
