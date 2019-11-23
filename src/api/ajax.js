@@ -3,6 +3,7 @@ import axios from 'axios'
 import { message } from 'antd'
 
 export default function ajax( url, data={}, type='GET'  ){
+    console.log('ajax:', 'url:', url, 'data:', data, 'type:', type)
     return new Promise((resolve, reject)=>{
         let p 
         if(type === 'GET'){
@@ -11,7 +12,7 @@ export default function ajax( url, data={}, type='GET'  ){
             p = axios.post(url, data)
         }
         p.then(response=>{
-            console.log(response)
+            console.log('ajax: response ', response)
             resolve(response.data)
         }).catch(error=>{
             message.error('请求出错了: ' + error.message)

@@ -10,7 +10,7 @@ import {
 } from 'antd'
 
 
-import logo from '../../assets/images/arr.png'
+import logo from '../../assets/images/ocat_300x300.png'
 import { reqLogin } from '../../api'
 import memoryUtils from '../../utils/memoryUtils'
 import storageUtils from '../../utils/storageUtils'

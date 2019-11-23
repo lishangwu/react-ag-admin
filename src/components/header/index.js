@@ -16,6 +16,7 @@ class Header extends Component{
         currentTime: formateDate(Date.now()),
         dayPictureUrl: '', // 天气图片url
         weather: '', // 天气的文本
+        city: '北京'
     }
 
     getTime = ()=>{
@@ -25,8 +26,7 @@ class Header extends Component{
         }, 1000)
     }
     getWeather = async()=>{
-        const { dayPictureUrl, weather } = await reqWeather('北京')
-        console.log(dayPictureUrl, weather )
+        const { dayPictureUrl, weather } = await reqWeather(this.state.city)
         this.setState({ dayPictureUrl, weather })
     }
     //面包屑
@@ -66,7 +66,7 @@ class Header extends Component{
         clearInterval(this.intervalId)
     }
     render(){
-        const { currentTime, dayPictureUrl, weather } = this.state
+        const { currentTime, dayPictureUrl, weather, city } = this.state
         const username = memoryUtils.user.username
         const title = this.getTitle()
         return(
@@ -79,6 +79,7 @@ class Header extends Component{
                     <div className="header-bottom-left">{title}</div>
                     <div className="header-bottom-right">
                         <span>{currentTime}</span>
+                        <span>{city}</span>
                         <img src={dayPictureUrl} alt="weather"/>
                         <span>{weather}</span>
                     </div>

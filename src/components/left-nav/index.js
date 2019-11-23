@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { NavLink, Link, withRouter } from 'react-router-dom'
 import { Menu, Icon, Button } from 'antd'
-import logo from '../../assets/images/arr.png'
+import logo from '../../assets/images/ocat_300x300.png'
 import './index.less'
 import MenuConfig from '../../config/menuConfig'
 

@@ -69,3 +69,5 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 git remote add origin git...
 git push origin master
+
+git checkout -b dev origin/dev
